@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Open+Sans&family=Oswald:wght@400;500;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.header__logo{
+
+}
+.header__slider{
+
+}
+.header__h1{
+    padding:20px;
+    font-family: 'Dancing Script',sans-serif;
+}
+.slider_style{
+    width:100%;
+    position:relative;
+}
