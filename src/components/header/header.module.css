@@ -4,11 +4,12 @@
     margin: 0;
     padding: 0;
 }
+
 .header__logo{
 
 }
 .header__slider{
-
+    margin-bottom: 0;
 }
 .header__h1{
     padding:20px;
@@ -17,4 +18,5 @@
 .slider_style{
     width:100%;
     position:relative;
+    
 }

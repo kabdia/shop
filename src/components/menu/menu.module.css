@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,300&family=Roboto&display=swap');
+.nav{
+    display: flex;
+    justify-content: space-between;   
+    font-size: 18px;
+    font-family:'Roboto';
+    font-weight: 400;
+    border-bottom:1px solid lightgray;    
+    position: relative;
+}
+.nav__items{
+    display: flex;  
+
+}
+.items__item_kat,.items__item_about, .items__item_kontakts,.busket__item{
+padding: 20px;
+border: 2px solid white;
+box-sizing: border-box;
+
+}
+ .items__item_about:hover, .items__item_kontakts:hover, .busket__item:hover{
+    border-bottom: 2px solid gray;    
+}
+.kategory{
+    position: absolute;
+    display: none;
+    margin-top:21px;
+    left:0;      
+}
+.items__item_kat:hover .kategory{
+    display: block;
+    
+}
+.kategory_items__item{
+width: 220px;
+height: 30px;
+background-color: #8f8777;
+font-size: 18px;
+padding: 15px;
+list-style-type:none;
+padding-left: 0;
+}
+.kategory_items__item:hover{
+    background-color: #706a5d;
+    transition: background-color 0.5s;
+}
+.kategory_items__item a{
+    text-decoration: none;
+    padding-left:25px;
+    color:white;
+}
+
+
