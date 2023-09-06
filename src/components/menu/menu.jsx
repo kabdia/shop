@@ -1,7 +1,10 @@
-import React from "react";
-import style from './menu.module.css'
+import React, { useState } from "react";
+import style from './menu.module.css';
+import {FaShoppingCart} from "react-icons/fa";
 
 function Menu(){
+    //состояние кнопки "Корзина" (изменение цвета при нажатии)
+    let [cartOpen,setCartOpen] = useState(false)
     return(<>
         <nav className={style.nav}>
             
@@ -25,9 +28,13 @@ function Menu(){
             </div>
             
             <div className={style.nav__busket}>
-            <div className={style.busket__item}>Корзина</div>
+            <div className={style.busket__item}><a><FaShoppingCart onClick={()=>setCartOpen(cartOpen = !cartOpen)}class={cartOpen ? style.item_a + ` `+style.active : style.item_a + ` `+style.nonactive}/> </a></div>
             </div> 
-                      
+            {cartOpen && (
+                <div className={style.shop__cart}>
+
+                </div>
+            )}          
         </nav>
         
         </>

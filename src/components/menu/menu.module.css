@@ -18,7 +18,7 @@ border: 2px solid white;
 box-sizing: border-box;
 
 }
- .items__item_about:hover, .items__item_kontakts:hover, .busket__item:hover{
+ .items__item_about:hover, .items__item_kontakts:hover{
     border-bottom: 2px solid gray;    
 }
 .kategory{
@@ -50,4 +50,25 @@ padding-left: 0;
     color:white;
 }
 
+.item_a{
+    cursor:pointer;
+    transition:color,transform 500ms ease;
+}
+.item_a:hover,.item_a.active{
+    color:#706a5d;
+    transform:scale(1.5);
+}
+.item_a.nonactive{
+    color:#000;
+}
+.shop__cart{
+position:absolute;
+top: 60px;
+right:0;
+width: 450px;
+height: 250px;
 
+background-color: #fff;
+box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+-webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}

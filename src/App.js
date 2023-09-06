@@ -4,11 +4,15 @@ import Footer from './components/footer/footer';
 import Menu from './components/menu/menu';
 import uuid from 'react-uuid';
 import Items from './components/items/items';
-
+import { Provider } from 'react-redux';
+import { store } from './redux';
 
 function App() {
 
+
+
   let state={
+    orders:[],
 items:[
   {id:uuid(),
     img:'https://www.albanashop.ru/image/cachewebp/catalog/products/Chantal/1860/Cantal1860bl_1-1920x1080.webp',
@@ -38,13 +42,17 @@ items:[
 ]
   }
   return (
+    <Provider store={store}>
     <div className="App">
       <Header/>
       <Menu/>
-      <Items items={state.items}/>
+      <Items items={state.items} />
       <Footer/>      
     </div>
+    </Provider>
   );
+
+  
 }
 
 export default App;
