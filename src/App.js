@@ -17,6 +17,36 @@ function App() {
   });
 
   useEffect(() => {
+    Api.getCatalog(1, 1).then((data) => {
+      let $tree = data.data.tree
+      console.log({ $tree });
+
+
+      let $zhsmenu = { "childrens": [] };
+      let $deep = ($c) => {
+        let $q = {};
+        $q["title"] = $c["key"];
+        for (let $key of Object.keys($c)) {
+          if (!$q["childrens"]) {
+            $q["childrens"] = [];
+          }
+          if (Number($key) == $key) {
+            let qq = $deep($c[$key]);
+            $q["childrens"].push(qq);
+          }
+        }
+
+        return $q;
+      };
+
+      $zhsmenu["childrens"] = $deep($tree[1]);
+      // eslint-disable-next-line no-undef
+      let zhs = new zhsmenu(($zhsmenu["childrens"]));
+      zhs.init(".zhs");
+
+
+
+    });
     //
     Api.getCatalog(1, 1).then((data) => {
       setState(state => ({
@@ -38,6 +68,9 @@ function App() {
       <div className="App">
         <Header />
         <Menu />
+        <div class="nav-item zhs-menu-event"><a href="#" class="nav-link">Каталог</a>
+          <div class="zhs"></div>
+        </div>
         <Items items={state.items} />
         <Footer />
       </div>
