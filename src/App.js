@@ -6,53 +6,78 @@ import uuid from 'react-uuid';
 import Items from './components/items/items';
 import { Provider } from 'react-redux';
 import { store } from './redux';
+import React, { useState, useEffect } from "react";
+import { Api } from './services/api';
 
 function App() {
 
+  const [state, setState] = useState({
+    orders: [],
+    items: []
+  });
+
+  useEffect(() => {
+    Api.getCatalog(1, 1).then((data) => {
+      let $tree = data.data.tree
+      console.log({ $tree });
 
 
-  let state={
-    orders:[],
-items:[
-  {id:uuid(),
-    img:'https://www.albanashop.ru/image/cachewebp/catalog/products/Chantal/1860/Cantal1860bl_1-1920x1080.webp',
-  name:'Сапоги',
-  country:'Италия',
-  price:3000,
-  material:'кожа', 
- },
-  {id:uuid(),
-    img:'https://ivanovskiytextil.ru/upload/resize_cache/iblock/3fe/mlgpp9l84rtkr7fzpi61hbukcwsv9c2w/340_340_140cd750bba9870f18aada2478b24840a/zhenskaya_kofta_iz_futera_2kh_nitki_s_laykroy_layma_kofta_zhenskaya_bezhevyy_bezhevyy_art_50357.jpg',
-    name:'Кофта женская',
-    country:'Россия',
-    price:1000,
-    material:'шерсть'},
-  {id:uuid(),
-    img:'https://cityfurs.ru/wp-content/uploads/2022/10/Kofta-iz-ovechei-shersti-cvet-lavanda-4-300x300.jpg',
-    name:'Свитер',
-    country:'Россия',
-    price:1500,
-    material:'шерсть'},
-  {id:uuid(),
-    img:'https://4mma.ru/media/images/thumbnail/161169189360107775ad9d61.00495574.pr_14290_1.png',
-    name:'Топик женский',
-    country:'Россия',
-    price:3000,
-    material:'полиостер'}
-]
-  }
+      let $zhsmenu = { "childrens": [] };
+      let $deep = ($c) => {
+        let $q = {};
+        $q["title"] = $c["key"];
+        for (let $key of Object.keys($c)) {
+          if (!$q["childrens"]) {
+            $q["childrens"] = [];
+          }
+          if (Number($key) == $key) {
+            let qq = $deep($c[$key]);
+            $q["childrens"].push(qq);
+          }
+        }
+
+        return $q;
+      };
+
+      $zhsmenu["childrens"] = $deep($tree[1]);
+      // eslint-disable-next-line no-undef
+      let zhs = new zhsmenu(($zhsmenu["childrens"]));
+      zhs.init(".zhs");
+
+
+
+    });
+    //
+    Api.getCatalog(1, 1).then((data) => {
+      setState(state => ({
+        ...state, items: data.data.els.map((product) => {
+          return {
+            id: uuid(),
+            country: 'Италия',
+            price: 3000,
+            material: 'кожа',
+            img: `http://iblock.1123875-cc97019.tw1.ru` + product.prop.DETAIL_PICTURE,
+            name: product.name
+          };
+        })
+      }));
+    });
+  }, []);
   return (
     <Provider store={store}>
-    <div className="App">
-      <Header/>
-      <Menu/>
-      <Items items={state.items} />
-      <Footer/>      
-    </div>
+      <div className="App">
+        <Header />
+        <Menu />
+        <div class="nav-item zhs-menu-event"><a href="#" class="nav-link">Каталог</a>
+          <div class="zhs"></div>
+        </div>
+        <Items items={state.items} />
+        <Footer />
+      </div>
     </Provider>
   );
 
-  
+
 }
 
 export default App;
