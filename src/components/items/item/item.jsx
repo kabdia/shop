@@ -1,15 +1,22 @@
 import React from "react";
 import style from './item.module.css';
-import { useDispatch } from "react-redux";
-import { setItemInCart } from "../../../redux/cart/cart-reducer";
+import { useDispatch,useSelector } from "react-redux";
+import { deleteItemFromCart, setItemInCart } from "../../../redux/cart/cart-reducer";
 
 function Item(props) {
 
     const dispatch = useDispatch();
+    const items = useSelector(state=>state.cart.itemsInCart)
+    const isItemInCart = items.some(t=>t.id === props.item.id)
 
     const handleClick = (e) => {
         e.stopPropagation();
-        dispatch(setItemInCart(props.item));
+        if (isItemInCart){
+            dispatch(deleteItemFromCart(props.item.id))
+        } else{
+            dispatch(setItemInCart(props.item));
+        }
+        
 
     }
     return (<div className={style.item}>
@@ -22,7 +29,7 @@ function Item(props) {
             type="primary"
             onClick={handleClick}
             className={style.item__button}>
-            Купить</button>
+           {isItemInCart ? 'Убрать из корзины':'В корзину'}</button>
     </div>)
 }
 

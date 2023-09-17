@@ -67,10 +67,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <Header />
-        <Menu />
-        <div class="nav-item zhs-menu-event"><a href="#" class="nav-link">Каталог</a>
-          <div class="zhs"></div>
-        </div>
+        <Menu />        
         <Items items={state.items} />
         <Footer />
       </div>

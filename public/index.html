@@ -12,35 +12,43 @@
   <style>
     .zhs {
       position: absolute;
+      margin-top:21px;
+      left:0;
       z-index: 100;
       background: transparent;
       display: none;
     }
-
+    .zhs-menu-event{
+      padding: 20px;      
+      box-sizing: border-box;
+    }
     .zhs-menu-event:hover .zhs {
       display: block;
     }
 
     .zhs-menu {
-      display: flex;
+      display: flex;      
     }
 
     .zhs-menu .zhs-menu--items {
       display: inline-flex;
-      flex-direction: column;
+      flex-direction: column;      
       background-color: transparent;
+      
     }
 
     .zhs-menu .zhs-menu--items--item {
-      height: 50px;
-      margin: 1px;
-      transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
-      border-radius: .25rem;
-      padding: .5rem 1rem;
+      align-items: center;
+      border:1px solid #fff;   
+      padding:20px;
       display: block;
       cursor: pointer;
       color: #fff;
-      background-color: #0d6efd;
+      background-color: #8f8777;
+      
+    }
+    .zhs-menu--items--item:hover{
+      background-color: #645c4c;
     }
 
     .zhs-menu .zhs-menu--items--item a {

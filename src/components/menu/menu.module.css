@@ -12,25 +12,18 @@
     display: flex;  
 
 }
-.items__item_kat,.items__item_about, .items__item_kontakts,.busket__item{
+.items__item_about, .items__item_kontakts,.busket__item{
 padding: 20px;
 border: 2px solid white;
 box-sizing: border-box;
 
 }
+
  .items__item_about:hover, .items__item_kontakts:hover{
     border-bottom: 2px solid gray;    
 }
-.kategory{
-    position: absolute;
-    display: none;
-    margin-top:21px;
-    left:0;      
-}
-.items__item_kat:hover .kategory{
-    display: block;
-    
-}
+
+/*  css меню в файле index.html
 .kategory_items__item{
 width: 220px;
 height: 30px;
@@ -43,7 +36,7 @@ padding-left: 0;
 .kategory_items__item:hover{
     background-color: #706a5d;
     transition: background-color 0.5s;
-}
+}*/
 .kategory_items__item a{
     text-decoration: none;
     padding-left:25px;
@@ -71,4 +64,8 @@ height: 250px;
 background-color: #fff;
 box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
 -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+}
+.busket__item{
+    display: flex;
+    gap: 10px;
 }
